@@ -1,0 +1,15 @@
+{
+    "name": "innoboxrr/laravel-app-update",
+    "autoload": {
+        "psr-4": {
+            "Innoboxrr\\LaravelAppUpdate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Homero Raul",
+            "email": "h.raulvc@gmail.com"
+        }
+    ],
+    "require": {}
+}

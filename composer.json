@@ -11,5 +11,20 @@
             "email": "h.raulvc@gmail.com"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "orchestra/testbench": "^8.17"
+    },
+    "require": {
+        "innoboxrr/larapack-generator": "^3.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Innoboxrr\\LaravelAppUpdate\\Providers\\AppServiceProvider",
+                "Innoboxrr\\LaravelAppUpdate\\Providers\\AuthServiceProvider",
+                "Innoboxrr\\LaravelAppUpdate\\Providers\\EventServiceProvider",
+                "Innoboxrr\\LaravelAppUpdate\\Providers\\RouteServiceProvider"
+            ]
+        }
+    }
 }

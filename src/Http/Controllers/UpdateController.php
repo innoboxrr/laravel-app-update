@@ -15,7 +15,7 @@ class UpdateController extends Controller
 
     public function update()
     {
-        $id_restriction = config('update.id_restriction');
+        $id_restriction = config('laravel-app-update.id_restriction');
 
         if (count($id_restriction) > 0) {
 
@@ -29,7 +29,7 @@ class UpdateController extends Controller
 
         }
 
-        Artisan::call('app:update');
+        $output = Artisan::call('app:update');
 
         return response()->json([
             'message' => 'System updated successfully.',

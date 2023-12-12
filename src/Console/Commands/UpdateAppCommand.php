@@ -29,30 +29,33 @@ class UpdateAppCommand extends Command
     {
         // Ejecutar git pull
         $this->executeCommand('git pull');
-        
+
         // Actualizar dependencias de Composer
         $this->executeCommand('composer update');
-        
-        // Actualizar módulos de npm y compilar assets
+
+        // Limpiar caché de npm y actualizar módulos
+        $this->executeCommand('npm cache clean --force');
         $this->executeCommand('npm install');
+
+        // Compilar assets
         $this->executeCommand('npm run build');
-        
+
         // Ejecutar migraciones
         $this->executeCommand('php artisan migrate');
-        
+
         // Limpiar y optimizar el proyecto
+        $this->executeCommand('php artisan cache:clear');
+        $this->executeCommand('php artisan config:clear');
+        $this->executeCommand('php artisan route:clear');
+        $this->executeCommand('php artisan view:clear');
+        $this->executeCommand('php artisan optimize:clear');
         $this->executeCommand('php artisan optimize');
 
         // Comandos adicionales de Laravel
         $this->executeCommand('php artisan route:json');
         $this->executeCommand('php artisan app:publish');
 
-        // Otros comandos de limpieza y optimización
-        $this->executeCommand('php artisan cache:clear');
-        $this->executeCommand('php artisan config:clear');
-        $this->executeCommand('php artisan route:clear');
-        $this->executeCommand('php artisan view:clear');
-
+        // Confirmación final
         $this->info('Actualización del proyecto completada con éxito.');
 
         return 0;
@@ -62,6 +65,6 @@ class UpdateAppCommand extends Command
     {
         $this->info("Ejecutando: $command");
         $output = shell_exec($command);
-        if($output !== null) $this->line($output);
+        if ($output !== null) $this->line($output);
     }
 }
